@@ -44,8 +44,17 @@ public class ProductService {
         product1.setName(product.getName());
         product1.setDescription(product.getDescription());
         product1.setPrice(product.getPrice());
-        product1.setQuantity(product.getQuantity());
+        product1.setStock(product.getStock());
 
         productRepo.save(product1);
+    }
+
+    public List<Products> getProducts(List<Long> productIds) {
+        List<Products> products= new ArrayList<>();
+        for(Long id: productIds)
+        {
+            products.add(productRepo.findById((id)).get());
+        }
+        return products;
     }
 }
